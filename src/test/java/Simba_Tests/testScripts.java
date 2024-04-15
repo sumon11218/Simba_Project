@@ -1,3 +1,5 @@
+package Simba_Tests;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class sauceDemo {
+public class testScripts {
     //define webdriver global variable
     WebDriver driver;
 
@@ -69,7 +71,7 @@ public class sauceDemo {
         //define error element
         WebElement errorElement = driver.findElement(By.cssSelector("h3"));
         //capture error message text
-       String errorMessage = errorElement.getText();
+        String errorMessage = errorElement.getText();
         //verify user received error message
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(errorMessage, "Epic sadface: Username and password do not match any user in this service", "Error message is not displayed");
@@ -119,9 +121,9 @@ public class sauceDemo {
         //add multiple products to cart
         for(int i=0; i< products.size() && i<3; i++){
             Thread.sleep(3000);
-                //click on product
-                products.get(i).click();
-                //wait few seconds
+            //click on product
+            products.get(i).click();
+            //wait few seconds
             Thread.sleep(3000);
             //click on 'Add to Cart'
             WebElement addToCart = driver.findElement(By.className("btn_inventory"));
@@ -261,10 +263,11 @@ public class sauceDemo {
     }//end of test 9
 
     @AfterSuite()
-        public void quitDriver(){
+    public void quitDriver(){
         //quit driver
         driver.quit();
     }//end of after suite
 
 }//end of class
+
 
