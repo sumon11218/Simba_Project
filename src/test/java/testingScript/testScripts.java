@@ -1,4 +1,4 @@
-package Simba_Tests;
+package testingScript;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
@@ -116,26 +117,14 @@ public class testScripts {
 
     @Test(dependsOnMethods = "loginWithValidCredentials")
     public void addMultipleProducts() throws InterruptedException {
-        //define products on inventory page
-        ArrayList<WebElement> products = new ArrayList<>(driver.findElements(By.xpath("//*[contains(@class, 'inventory_item_name')]")));
-        //add multiple products to cart
-        for(int i=0; i< products.size() && i<3; i++){
-            Thread.sleep(3000);
-            //click on product
-            products.get(i).click();
-            //wait few seconds
-            Thread.sleep(3000);
-            //click on 'Add to Cart'
-            WebElement addToCart = driver.findElement(By.className("btn_inventory"));
-            addToCart.click();
-            Thread.sleep(5000);
-            //navigate back to inventory page
-            driver.navigate().back();
-            Thread.sleep(2000);
-        }//end of for loop
+        // Add multiple products to cart
+        driver.findElement(By.cssSelector(".inventory_item:nth-child(1) .btn_inventory")).click();
+        driver.findElement(By.cssSelector(".inventory_item:nth-child(2) .btn_inventory")).click();
+        // Verify if all selected products are added to the cart
+        Assert.assertEquals("2", driver.findElement(By.xpath("//*[@class='shopping_cart_badge']")).getText());
         //verify products are added to cart successfully
         WebElement cart = driver.findElement(By.xpath("//*[@class='shopping_cart_badge']"));
-        if(cart.getText().equals("3")) {
+        if(cart.getText().equals("2")) {
             System.out.println("Products were added to cart successfully");
         }else {
             System.out.println("Products were not successfully added");
@@ -244,11 +233,11 @@ public class testScripts {
 
     @Test(dependsOnMethods = "loginWithValidCredentials")
     public void logOutFunctionality() throws InterruptedException {
-        //wait
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         //click on menu icon
         WebElement menuIcon = driver.findElement(By.xpath("//*[@id='react-burger-menu-btn']"));
         menuIcon.click();
+        Thread.sleep(3000);
         //click on logout
         WebElement logOutOption = driver.findElement(By.xpath("//*[@id='logout_sidebar_link']"));
         logOutOption.click();
@@ -258,7 +247,7 @@ public class testScripts {
         if(actualUrl.equals(expectedUrl)){
             System.out.println("User is redirected back to login page");
         } else {
-            System.out.println("User is not redirecetd back to login page");
+            System.out.println("User is not redirected back to login page");
         }//end of condition
     }//end of test 9
 
