@@ -29,7 +29,7 @@ public class loginSteps {
         //navigate
         driver.navigate().to("https://www.saucedemo.com/");
     }//end of given method
-    @When("^I enter valid Username(.*) in text field$")
+    @When("^I enter valid Username (.*) in text field$")
     public void typeUserName(String username){
         ReusableMethods.sendKeysMethod(driver,"//*[@id='user-name']",username, "Username Field");
     }//end of when method

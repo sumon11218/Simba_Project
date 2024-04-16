@@ -9,12 +9,12 @@ Feature: Login Functionality
 
     Examples:
     |username|
-      |standard_user|
-      |locked_out_user|
-      |problem_user|
-      |performance_glitch_user|
-      |error_user|
-      |visual_user|
+    |standard_user|
+    |locked_out_user|
+    |problem_user|
+    |performance_glitch_user|
+    |error_user|
+    |visual_user|
 
   Scenario: Login with Invalid Credentials
     Given I navigate to the login page

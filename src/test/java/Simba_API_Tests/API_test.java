@@ -1,11 +1,9 @@
-package Simba_Tests;
+package Simba_API_Tests;
 
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.json.simple.JSONObject;
 import org.testng.annotations.Test;
 
-import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 
 public class API_test {
